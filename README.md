@@ -5,10 +5,21 @@ A simple utility to control brightness on multiple display devices simultaneousl
 ## Usage
 
 ```
-bright <percentage>
+bright <value>
 ```
 
-Where `percentage` is a value between 1-100.
+Where `value` can be:
+
+- Absolute percentage: `50` or `50%`
+- Relative increase: `+10` or `+10%`
+- Relative decrease: `-10` or `-10%`
+
+Examples:
+```
+bright 75     # Set brightness to 75%
+bright +10    # Increase brightness by 10
+bright -5%    # Decrease brightness by 5%
+```
 
 ## Installation
 
