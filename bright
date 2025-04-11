@@ -27,9 +27,16 @@ if [[ "$VALUE" =~ ^[0-9]+$ ]]; then
     VALUE="${VALUE}%"
 fi
 
+# Handle negative values with '--' to prevent them being treated as options
+if [[ "$VALUE" == -* ]]; then
+    SET_CMD="set -- $VALUE"
+else
+    SET_CMD="set $VALUE"
+fi
+
 # Set brightness for each device
 for DEVICE in "${DEVICES[@]}"; do
-    brightnessctl -d "$DEVICE" set "$VALUE" &>/dev/null
+    brightnessctl -d "$DEVICE" $SET_CMD &>/dev/null
     STATUS=$?
     
     if [ $STATUS -eq 0 ]; then
